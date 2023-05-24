@@ -1,5 +1,6 @@
 var boxes = document.getElementsByClassName("box");
-var container = document.getElementById("container").getBoundingClientRect();
+var container = document.getElementById("container");
+var rect2;
 
 for (var i = 0; i < boxes.length; i++) {
   var box = boxes[i];
@@ -17,7 +18,6 @@ for (var i = 0; i < boxes.length; i++) {
 }
 function dragElement(el) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
-  var boxRect;
   el.onmousedown = dragStart;
 
   function dragStart(e) {
@@ -47,12 +47,10 @@ function dragElement(el) {
     pos2 = pos4 - e.clientY;
     pos3 = e.clientX;
     pos4 = e.clientY;
-    boxRect = el.getBoundingClientRect();
-
-    if (pos2 > 0 && boxRect.top === container.top + 5) pos2 = 0;
-    else if (pos2 < 0 && boxRect.bottom === container.bottom - 5) pos2 = 0;
-    if (pos1 > 0 && boxRect.left === container.left + 5) pos1 = 0;
-    else if (pos1 > 0 && boxRect.right === container.right - 5) pos1 = 0;
+    
+    isTouchingBorder(el, container);
+    if(el.classList.contains("Top") || el.classList.contains("Bottom")) pos2 = 0;
+    if(el.classList.contains("Left") || el.classList.contains("Right")) pos1 = 0;
     
     el.style.top = (el.offsetTop - pos2) + "px";
     el.style.left = (el.offsetLeft - pos1) + "px";
@@ -87,5 +85,24 @@ function dragElement(el) {
       box1.top < box2.bottom &&
       box1.bottom > box2.top
     );
+  }
+
+  function isTouchingBorder(element1, element2) {
+    var rect1 = element1.getBoundingClientRect();
+    var rect2 = element2.getBoundingClientRect();
+
+    var touchingLeft = rect1.right >= rect2.left + 5 && rect1.left <= rect2.left + 5;
+    var touchingRight = rect1.left <= rect2.right - 5 && rect1.right >= rect2.right - 5;
+    var touchingTop = rect1.bottom >= rect2.top + 5 && rect1.top <= rect2.top + 5;
+    var touchingBottom = rect1.top <= rect2.bottom - 5 && rect1.bottom >= rect2.bottom - 5;
+
+    if (touchingLeft && !el.classList.contains("Left") && pos1 > 0) el.classList.add("Left");
+    else if (pos1 < 0 && el.classList.contains("Left")) el.classList.remove("Left");
+    if (touchingRight && !el.classList.contains("Right") && pos1 < 0) el.classList.add("Right");
+    else if (pos1 > 0 && el.classList.contains("Right")) el.classList.remove("Right");
+    if (touchingTop && !el.classList.contains("Top") && pos2 > 0) el.classList.add("Top");
+    else if (pos2 < 0 && el.classList.contains("Top")) el.classList.remove("Top");
+    if (touchingBottom && !el.classList.contains("Bottom") && pos2 < 0) el.classList.add("Bottom");
+    else if (pos2 > 0 && el.classList.contains("Bottom")) el.classList.remove("Bottom");
   }
 }
