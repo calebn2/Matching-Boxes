@@ -1,6 +1,16 @@
-var boxes = document.getElementsByClassName("box");
 var container = document.getElementById("container");
 var rect2;
+
+for (var i = 0; i < cards.length; i++) {
+  var card = document.createElement("div");
+  container.appendChild(card);
+  card.id = cards[i].identifier;
+  card.classList.add("box");
+  card.classList.add(cards[i].class);
+  card.innerHTML = cards[i].data;
+}
+
+var boxes = container.childNodes;
 
 for (var i = 0; i < boxes.length; i++) {
   var box = boxes[i];
