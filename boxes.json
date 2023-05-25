@@ -1,4 +1,4 @@
-boxes = [
+[
     {
         "identifier": "box1",
         "class": "1",
@@ -18,5 +18,15 @@ boxes = [
         "identifier": "box4",
         "class": "2",
         "data": "Hello, World!"
+    },
+    {
+        "identifier": "box5",
+        "class": "3",
+        "data": "System.out.println('hello, world')"
+    },
+    {
+        "identifier": "box6",
+        "class": "3",
+        "data": "hello, world"
     }
 ]

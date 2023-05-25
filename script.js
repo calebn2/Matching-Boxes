@@ -1,24 +1,39 @@
 var container = document.getElementById("container");
 var rect2;
+var boxes;
 
-for (var i = 0; i < boxes.length; i++) {
-  var card = document.createElement("div");
-  container.appendChild(card);
-  card.id = boxes[i].identifier;
-  card.classList.add("box");
-  card.classList.add(boxes[i].class);
-  card.innerHTML = boxes[i].data;
+function loadBoxes() {
+  fetch('boxes.json')
+    .then(response => response.json())
+    .then(data => {
+      boxes = data;
+      makeBoxes();
+    })
+    .catch(error => console.error('Error loading boxes:', error));
 }
 
-var boxes = container.childNodes;
+function makeBoxes() {
+  for (var i = 0; i < boxes.length; i++) {
+    var card = document.createElement("div");
+    container.appendChild(card);
+    card.id = boxes[i].identifier;
+    card.classList.add("box");
+    card.classList.add(boxes[i].class);
+    card.innerHTML = boxes[i].data;
+  }
+  boxes = container.childNodes;
+  setBoxLocation();
+}
 
-for (var i = 0; i < boxes.length; i++) {
-  var box = boxes[i];
-  var randY = Math.floor(Math.random() * (700 - box.offsetWidth));
-  var randX = Math.floor(Math.random() * (600 - box.offsetHeight));
-  box.style.left = randX + "px";
-  box.style.top = randY + "px";
-  dragElement(box);
+function setBoxLocation() {
+  for (var i = 0; i < boxes.length; i++) {
+    var box = boxes[i];
+    var randY = Math.floor(Math.random() * (700 - box.offsetWidth));
+    var randX = Math.floor(Math.random() * (600 - box.offsetHeight));
+    box.style.left = randX + "px";
+    box.style.top = randY + "px";
+    dragElement(box);
+  }
 }
 
 function dragElement(el) {
@@ -111,3 +126,5 @@ function dragElement(el) {
     else if (pos2 > 0 && el.classList.contains("Bottom")) el.classList.remove("Bottom");
   }
 }
+
+loadBoxes();

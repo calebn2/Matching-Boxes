@@ -25,17 +25,22 @@ body {
 }
 
 .box {
+  position: absolute;
   width: auto;
   height: 50px;
   line-height: 50px;
-  position: absolute;
-  cursor: grab;
+  background-color: white;
   text-align: center;
   justify-content: center;
   border: 1px solid black;
+  border-radius: 10px;
   padding: 10px;
-  background-color: white;
+  cursor: grab;
   user-select: none;
+}
+
+.box:hover {
+  background-color: beige;
 }
 
 .disappear {
