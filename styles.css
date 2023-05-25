@@ -24,53 +24,18 @@ body {
   }
 }
 
-#myelement{
-    animation-name: myAnimation;
-    animation-duration: 2000ms;
-    animation-fill-mode: forwards;
-}
-
 .box {
-  width: 100px;
-  height: 100px;
+  width: auto;
+  height: 50px;
+  line-height: 50px;
   position: absolute;
   cursor: grab;
   text-align: center;
   justify-content: center;
   border: 1px solid black;
-  padding: auto;
+  padding: 10px;
   background-color: white;
   user-select: none;
-}
-
-#box1 {
-  top: 0px;
-  left: -101px;
-}
-
-#box2 {
-  top: 100px;
-  left: -101px;
-}
-
-#box3 {
-  top: 200px;
-  left: -101px;
-}
-
-#box4 {
-  top: 300px;
-  left: -101px;
-}
-
-#box5 {
-  top: 400px;
-  left: -101px;
-}
-
-#box6 {
-  top: 500px;
-  left: -101px;
 }
 
 .disappear {

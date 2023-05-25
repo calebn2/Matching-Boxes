@@ -1,22 +1,22 @@
-var card1 = {
+boxes = [
+    {
         "identifier": "box1",
         "class": "1",
-        "data": "Data for Box 1"
-};
-var card2 = {
+        "data": "System.out.println('hello world')"
+    },
+    {
         "identifier": "box2", 
         "class": "1",
-        "data": "Data for Box 2"
-};
-var card3 = {
+        "data": "hello world"
+    },
+    {
         "identifier": "box3",
         "class": "2",
-        "data": "Data for Box 3"
-};
-var card4 = {
+        "data": "System.out.println('Hello, World!')" 
+    },
+    {
         "identifier": "box4",
         "class": "2",
-        "data": "Data for Box 4"
-};
-
-var cards = [card1, card2, card3, card4];
+        "data": "Hello, World!"
+    }
+]

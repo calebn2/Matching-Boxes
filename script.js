@@ -1,31 +1,26 @@
 var container = document.getElementById("container");
 var rect2;
 
-for (var i = 0; i < cards.length; i++) {
+for (var i = 0; i < boxes.length; i++) {
   var card = document.createElement("div");
   container.appendChild(card);
-  card.id = cards[i].identifier;
+  card.id = boxes[i].identifier;
   card.classList.add("box");
-  card.classList.add(cards[i].class);
-  card.innerHTML = cards[i].data;
+  card.classList.add(boxes[i].class);
+  card.innerHTML = boxes[i].data;
 }
 
 var boxes = container.childNodes;
 
 for (var i = 0; i < boxes.length; i++) {
   var box = boxes[i];
-  var randY = Math.floor(Math.random() * 700);
-  var randX = Math.floor(Math.random() * 700);
-  for (var j = 0; j < boxes.length; j++) {
-    if (Math.abs(randX - boxes[j].style.left) < 100 || Math.abs(randY - boxes[j].style.top) < 100) {
-      i--;
-      break;
-    }
-    box.style.left = randX + "px";
-    box.style.top = randY + "px";
-  }
+  var randY = Math.floor(Math.random() * (700 - box.offsetWidth));
+  var randX = Math.floor(Math.random() * (600 - box.offsetHeight));
+  box.style.left = randX + "px";
+  box.style.top = randY + "px";
   dragElement(box);
 }
+
 function dragElement(el) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   el.onmousedown = dragStart;
