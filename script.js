@@ -2,6 +2,8 @@ var container = document.getElementById("container");
 var rect2;
 var boxes;
 
+// loadBoxes() takes data from a JSON file in a server to populate the container.
+/*
 function loadBoxes() {
   fetch('boxes.json')
     .then(response => response.json())
@@ -11,6 +13,40 @@ function loadBoxes() {
     })
     .catch(error => console.error('Error loading boxes:', error));
 }
+*/
+boxes = [
+  {
+      "identifier": "box1",
+      "class": "1",
+      "data": "System.out.println('hello world')"
+  },
+  {
+      "identifier": "box2", 
+      "class": "1",
+      "data": "hello world"
+  },
+  {
+      "identifier": "box3",
+      "class": "2",
+      "data": "System.out.println('Hello, World!')" 
+  },
+  {
+      "identifier": "box4",
+      "class": "2",
+      "data": "Hello, World!"
+  },
+  {
+      "identifier": "box5",
+      "class": "3",
+      "data": "System.out.println('hello, world')"
+  },
+  {
+      "identifier": "box6",
+      "class": "3",
+      "data": "hello, world"
+  }
+]
+makeBoxes();
 
 function makeBoxes() {
   for (var i = 0; i < boxes.length; i++) {
